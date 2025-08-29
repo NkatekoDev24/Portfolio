@@ -26,10 +26,10 @@ Soft Skills: Communication, Leadership, Collaboration, Problem-Solving
 Other: Rest APIs
 
 Education:
-BSc Honours Computer Science, University of the Free State (Feb 2023 – Dec 2024)
+BSc Honours Computer Science, University of the Free State (Completed in 2024)
 Key Project: Job Interview Management System (Android Studio & Kotlin)
 
-BSc Computer Science, University of the Free State (Feb 2017 – Dec 2021)
+BSc Computer Science, University of the Free State (Completed in 2021)
 
 Work Experience:
 - Junior Researcher, University of the Free State (Jan 2024 - Present)
