@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Send, User, Bot, MessageCircle } from "lucide-react";
+import { Loader2, Send, User, Bot, MessageCircle, AlertCircle } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
 interface Message {
@@ -27,6 +27,26 @@ const DemoAgent = () => {
   const [selectedRole, setSelectedRole] = useState<string>("");
   const [question, setQuestion] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isConnected, setIsConnected] = useState(true);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to bottom when new messages arrive
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  // Check API connectivity on component mount
+  useEffect(() => {
+    const checkConnection = async () => {
+      try {
+        const response = await fetch("/api/demo-agent", { method: "GET" });
+        setIsConnected(response.ok);
+      } catch (error) {
+        setIsConnected(false);
+      }
+    };
+    checkConnection();
+  }, []);
 
   const roles = [
     "Technical Interviewer",
@@ -57,6 +77,21 @@ const DemoAgent = () => {
     setIsLoading(true);
 
     try {
+      // Track analytics
+      fetch("/api/analytics", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          event: "demo_agent_interaction",
+          data: {
+            role: selectedRole,
+            question: question,
+          },
+        }),
+      }).catch(console.error); // Don't block on analytics errors
+
       const response = await fetch("/api/demo-agent", {
         method: "POST",
         headers: {

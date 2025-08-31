@@ -22,6 +22,7 @@ const Navigation = () => {
     { label: "Projects", href: "#projects" },
     { label: "Education", href: "#education" },
     { label: "Demo Agent", href: "#demo-agent" },
+    { label: "Analytics", href: "#analytics" },
   ];
 
   const scrollToSection = (href: string) => {

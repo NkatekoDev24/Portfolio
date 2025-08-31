@@ -24,3 +24,42 @@ Clone the repository:
 ```bash
 git clone https://github.com/NkatekoDev24/Portfolio.git
 cd Portfolio
+```
+
+### Environment Variables
+
+Create a `.env` file in the root directory:
+
+```bash
+# Required for AI features
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+**Important**: Never commit your API keys to version control. Add `.env` to your `.gitignore` file.
+
+## 🚀 Getting Started
+
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Set up environment variables** (see above)
+
+3. **Start development server**:
+   ```bash
+   npm run dev
+   ```
+
+4. **For full functionality with AI features**:
+   ```bash
+   npm run dev:all
+   ```
+
+## 📝 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run lint` - Run ESLint
+- `npm run preview` - Preview production build
+- `npm run dev:all` - Start both frontend and backend servers

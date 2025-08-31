@@ -1,7 +1,7 @@
 // api/demo-agent.ts - Vercel Serverless Function
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-const GEMINI_API_KEY = "AIzaSyBhaKkM8LJSpykc7fX1woEPBaSgucnXkoQ"; // Replace with your API key
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
 
 // ----------------------
 // Nkateko's full profile for the AI to reference
@@ -84,6 +84,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    // Validate API key
+    if (!GEMINI_API_KEY) {
+      return res.status(500).json({ 
+        reply: "API key not configured. Please contact the administrator." 
+      });
+    }
+
     const { role, question } = req.body;
 
     if (!role?.trim() || !question?.trim()) {
@@ -131,7 +138,7 @@ Remember to:
 
     const textResponse = await geminiResponse.text();
 
-    let data: any;
+    let data: { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }> };
     try {
       data = JSON.parse(textResponse);
     } catch (err) {
