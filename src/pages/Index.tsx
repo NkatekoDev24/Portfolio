@@ -6,7 +6,6 @@ import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import Education from "@/components/Education";
 import DemoAgent from "@/components/DemoAgent";
-import AnalyticsDashboard from "@/components/AnalyticsDashboard";
 
 const Index = () => {
   return (
@@ -19,11 +18,6 @@ const Index = () => {
       <Projects />
       <Education />
       <DemoAgent />
-      <section id="analytics" className="py-20">
-        <div className="container mx-auto px-6">
-          <AnalyticsDashboard />
-        </div>
-      </section>
     </div>
   );
 };

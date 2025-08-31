@@ -22,7 +22,6 @@ const Navigation = () => {
     { label: "Projects", href: "#projects" },
     { label: "Education", href: "#education" },
     { label: "Demo Agent", href: "#demo-agent" },
-    { label: "Analytics", href: "#analytics" },
   ];
 
   const scrollToSection = (href: string) => {
@@ -84,29 +83,29 @@ const Navigation = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden">
-          <div className="absolute inset-0 bg-background/95 backdrop-blur-md" />
-          <div className="relative flex flex-col items-center justify-center h-full space-y-8">
-            {navItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => scrollToSection(item.href)}
-                className="text-2xl font-medium text-foreground/80 hover:text-primary transition-smooth"
-              >
-                {item.label}
-              </button>
-            ))}
-            <a href="mailto:nkunans98@gmail.com">
-              <Button variant="hero" size="lg">
-                <Mail className="w-5 h-5" />
-                Contact Me
-              </Button>
-            </a>
-          </div>
-        </div>
-      )}
+                                     {/* Mobile Menu */}
+             {isMobileMenuOpen && (
+               <div className="fixed inset-0 z-40 md:hidden">
+                 <div className="absolute inset-0 bg-background/95 backdrop-blur-md" />
+                 <div className="relative flex flex-col items-center justify-center h-full space-y-8">
+                   {navItems.map((item) => (
+                     <button
+                       key={item.label}
+                       onClick={() => scrollToSection(item.href)}
+                       className="text-2xl font-medium text-foreground/80 hover:text-primary transition-smooth"
+                     >
+                       {item.label}
+                     </button>
+                   ))}
+                   <a href="mailto:nkunans98@gmail.com">
+                     <Button variant="hero" size="lg">
+                       <Mail className="w-5 h-5" />
+                       Contact Me
+                     </Button>
+                   </a>
+                 </div>
+               </div>
+             )}
     </>
   );
 };
